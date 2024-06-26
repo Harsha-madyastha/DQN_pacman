@@ -209,7 +209,7 @@ def calc_loss(batch, net, tgt_net, device):
 
 # Training Loop
 def train():
-    env = CustomMsPacmanEnv("E:\\dqn-pacman\\venv\\Lib\\site-packages\\ale_py\\roms\\ms_pacman.bin")
+    env = CustomMsPacmanEnv(".\ms_pacman.bin")
     model_name="DQN"
     batch_size=128
     legal_actions = env.legal_actions
