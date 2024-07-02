@@ -30,3 +30,7 @@ venv/
 
 # json files
 launch.json
+
+utils/__pycache__/
+models/__pycache__/
+__pycache__
