@@ -70,9 +70,6 @@ However, out of the tried models and batch sizes, the **batch_size:32** trained 
 *Pacman game play animation*
 
 ### Future Work
-
-Future Work
-
 To improve the performance of the models, several approaches can be considered:
 * Fine-tuning hyperparameters
 * Increasing the complexity of the models
