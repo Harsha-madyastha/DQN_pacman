@@ -4,6 +4,12 @@ import numpy as np
 Experience = collections.namedtuple('Experience', field_names=['state', 'action', 'reward', 'done', 'new_state'])
 
 class ExperienceBuffer:
+    """
+    A replay buffer to store and sample experiences for training a reinforcement learning agent.
+
+    Attributes:
+        buffer (collections.deque): Circular buffer to store experiences.
+    """
     def __init__(self, capacity):
         self.buffer = collections.deque(maxlen=capacity)
 

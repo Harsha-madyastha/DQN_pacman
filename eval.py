@@ -8,6 +8,17 @@ import imageio
 import os
 
 def evaluate(model_path, model_type, batch_size):
+    """
+    Evaluates a reinforcement learning model on the Ms. Pacman environment and saves an animation as a GIF.
+
+    Args:
+        model_path (str): Path to the model file to evaluate.
+        model_type (str): Type of the model ('dqn' or 'resnet').
+        batch_size (int): Batch size used during training of the model.
+
+     Notes:
+        - It saves the animation of the gameplay as a GIF in the './results' directory.
+    """
     env = CustomMsPacmanEnv("./ms_pacman.bin")
     legal_actions = env.legal_actions
     env = MaxAndSkipEnv(env,skip=16)
@@ -43,10 +54,8 @@ def evaluate(model_path, model_type, batch_size):
     
     print(f"Model: {model_path}, Total reward: {total_reward}")
 
-    # Ensure the results directory exists
     os.makedirs('./results', exist_ok=True)
     
-    # Save the animation as a GIF
     gif_path = f"./results/animation_{model_type}_{batch_size}.gif"
     imageio.mimsave(gif_path, frames, fps=10)
 

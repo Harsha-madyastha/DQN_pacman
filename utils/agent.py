@@ -7,6 +7,15 @@ Experience = namedtuple('Experience', ['state', 'action', 'reward', 'done', 'new
 
 # Agent
 class Agent:
+    """
+    Agent that interacts with an environment and collects experiences.
+
+    Attributes:
+        env: The environment where the agent interacts.
+        exp_buffer: A buffer to store experiences (state, action, reward, done, new_state).
+        state: Current state of the agent in the environment.
+        total_reward: Cumulative reward collected by the agent in the current episode.
+    """
     def __init__(self, env, exp_buffer):
         self.env = env
         self.exp_buffer = exp_buffer
@@ -18,6 +27,16 @@ class Agent:
 
     @torch.no_grad()
     def play_step(self, net, epsilon=0.0, device='cpu'):
+        """
+        Take a step in the environment using an epsilon-greedy strategy.
+
+        Args:
+            net: Neural network model to compute Q-values.
+            epsilon (float): Probability of taking a random action.
+
+        Returns:
+            done_reward: Total reward collected if the episode is done, otherwise None.
+        """
         done_reward = None
 
         if np.random.random() < epsilon:

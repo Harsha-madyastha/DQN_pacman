@@ -3,6 +3,15 @@ import numpy as np
 import cv2
 
 class CustomMsPacmanEnv:
+    """
+    Custom environment wrapper for Ms. Pacman using ALEInterface.
+
+    Attributes:
+        ale: ALEInterface object for interfacing with the Atari Learning Environment.
+        legal_actions: List of legal actions in the environment.
+        observation_space: Shape of the observation space (screen dimensions).
+        action_space: Number of possible actions in the environment.
+    """
     def __init__(self, rom_path):
         self.ale = ALEInterface()
         self.ale.loadROM(rom_path)

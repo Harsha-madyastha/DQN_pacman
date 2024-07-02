@@ -3,6 +3,19 @@ import torch.nn as nn
 import numpy as np
 
 class DQN(nn.Module):
+    """
+    Deep Q-Network (DQN) model for reinforcement learning.
+
+    This model uses convolutional neural networks to process input states and 
+    output Q-values for each possible action. It consists of convolutional layers 
+    followed by fully connected layers. The convolutional layers extract spatial 
+    features from the input, while the fully connected layers map these features 
+    to action values.
+
+    Attributes:
+        conv (nn.Sequential): Convolutional layers with ReLU activations.
+        fc (nn.Sequential): Fully connected layers with ReLU activations.
+    """
     def __init__(self, input_shape, n_actions):
         super(DQN, self).__init__()
         self.conv = nn.Sequential(

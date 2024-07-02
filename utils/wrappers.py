@@ -4,6 +4,15 @@ import cv2
 import torch
 
 class MaxAndSkipEnv:
+    """
+    Wrapper for an environment that combines observations over multiple frames and skips actions.
+
+    Attributes:
+        env: The original environment to wrap.
+        _skip (int): Number of frames to skip between actions.
+        _obs_buffer (collections.deque): Circular buffer to store observations.
+        legal_actions: List of legal actions in the environment.
+    """
     def __init__(self, env, skip=16):
         self.env = env
         self._skip = skip
@@ -32,6 +41,13 @@ class MaxAndSkipEnv:
         return getattr(self.env, name)
 
 class ProcessFrame84Gray:
+    """
+    Preprocesses frames from an environment to grayscale and resize to 84x84.
+
+    Attributes:
+        env: The environment to wrap.
+        legal_actions: List of legal actions in the environment.
+    """
     def __init__(self, env):
         self.env = env
         self.legal_actions = env.legal_actions
@@ -59,6 +75,16 @@ class ProcessFrame84Gray:
     
 
 class BufferWrapper:
+    """
+    Wrapper to buffer observations over multiple time steps for RL algorithms.
+
+    Attributes:
+        env: The environment to wrap.
+        dtype: Data type to use for the buffer.
+        n_steps (int): Number of steps to buffer.
+        legal_actions: List of legal actions in the environment.
+        buffer (numpy.ndarray or None): Buffer to store observations.
+    """
     def __init__(self, env, n_steps, legal_actions, dtype=np.float32):
         self.env = env
         self.dtype = dtype

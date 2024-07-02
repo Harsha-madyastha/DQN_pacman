@@ -3,6 +3,19 @@ import torch.nn as nn
 import numpy as np
 
 def calc_loss(batch, net, tgt_net, device, gamma=0.99):
+    """
+    Calculate the loss using the batch of experiences for training DQN.
+
+    Args:
+        batch (tuple): A tuple containing lists or arrays of states, actions, rewards,
+                       done flags, and next states.
+        net (torch.nn.Module): The primary neural network model (online network).
+        tgt_net (torch.nn.Module): The target neural network model (target network).
+        gamma (float, optional): Discount factor for future rewards. Default is 0.99.
+
+    Returns:
+        torch.Tensor: The calculated loss value using Mean Squared Error (MSE) loss.
+    """
     states, actions, rewards, dones, next_states = batch
 
     states = np.array(states).reshape(-1,1,84,84)

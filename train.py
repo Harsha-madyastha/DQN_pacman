@@ -9,10 +9,23 @@ from utils.replay_buffer import ExperienceBuffer
 from utils.loss import calc_loss
 from models.dqn_model import DQN
 from models.resnet_dqn_model import ResNetDQN
-import datetime
 import argparse
 
 def train(model_name):
+    """
+    Trains a Deep Q-Network (DQN) or ResNet-DQN model on the Ms. Pacman environment.
+
+    Args:
+        model_name (str): Name of the model to train. Choices are 'DQN' or 'resnet'.
+
+    Raises:
+        ValueError: If an unknown model name is provided.
+
+    Notes:
+        - Saves the best performing model based on the mean reward over the last 100 episodes.
+        - Plots the training history showing frame index vs. mean reward.
+
+    """
     env = CustomMsPacmanEnv(".\ms_pacman.bin")
     legal_actions = env.legal_actions
     env = MaxAndSkipEnv(env, skip=16)
@@ -27,8 +40,8 @@ def train(model_name):
         net = DQN(input_shape, n_actions).to(device)
         tgt_net = DQN(input_shape, n_actions).to(device)
     elif model_name == "resnet":
-        net = ResNetDQN((1,84,84), len(legal_actions)).to(device)
-        tgt_net = ResNetDQN((1,84,84), len(legal_actions)).to(device)
+        net = ResNetDQN(input_shape, len(legal_actions)).to(device)
+        tgt_net = ResNetDQN(input_shape, len(legal_actions)).to(device)
     else:
         raise ValueError("Unknown model name")
 
@@ -36,10 +49,9 @@ def train(model_name):
     agent = Agent(env, buffer)
 
     epsilon_start = 1.0
-    epsilon_decay = 0.99
     min_epsilon = 0.01
     learning_rate = 1e-4
-    batch_size = 128
+    batch_size = 256
     sync_target_frames = 1000
     epsilon_decay_last_frame=250000
 
@@ -59,7 +71,6 @@ def train(model_name):
             m_reward = np.mean(total_rewards[-100:])
             history.append((frame_idx, m_reward, epsilon))
             if best_m_reward is None or best_m_reward < m_reward:
-                # timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
                 model_filename = f"best_model_{model_name}_{batch_size}.dat"
                 torch.save(net.state_dict(), model_filename)
                 if best_m_reward is not None:
@@ -83,6 +94,6 @@ def train(model_name):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", required=False,default="resnet", choices=["DQN", "resnet"], help="Choose the model to train")
+    parser.add_argument("--model", required=False, choices=["DQN", "resnet"], help="Choose the model to train")
     args = parser.parse_args()
     train(args.model)
