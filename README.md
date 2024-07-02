@@ -61,16 +61,20 @@ Two models were trained: Deep Q-Network (DQN) and ResNet DQN. Both models were t
 #### Analysis
 From the frames vs. reward plots, it is evident that the models failed to learn effectively over time. This resulted in poor performance during evaluation. The reward plots show significant fluctuations and a lack of steady improvement, indicating that the models struggled to converge and learn an optimal policy.
 
+However, out of the tried models and batch sizes, the **batch_size:32** trained with **DQN** showed an improvement in learning. This model demonstrated that the agent learned from the environment, achieving the highest score in evaluation compared to the rest.
+
+![Frames vs reward plot for DQN model with batch-size:16](https://github.com/Harsha-madyastha/DQN_pacman/blob/matraining_episodes/best_model_DQN_32.png)
+
 ### Future Work
 
+Future Work
+
 To improve the performance of the models, several approaches can be considered:
-* Enhanced Architectures: While the current implementation used a simple form of ResNet18 architecture, exploring deeper and more complex architectures like ResNet50, ResNet101, or other state-of-the-art ImageNet architectures could potentially yield better results.
-* Hyperparameter Tuning:
-Experimenting with different hyperparameters such as learning rates, batch sizes, and exploration-exploitation strategies (e.g., epsilon decay in DQN) could help in achieving better convergence.
-* Regularization Techniques:
-Incorporating regularization techniques such as dropout, weight decay, or batch normalization might improve the model's ability to generalize from the training data.
-* Advanced Training Techniques:
-Implementing advanced training techniques like Double DQN, Dueling DQN, or Prioritized Experience Replay could enhance the learning process and performance of the DQN model.
+* Fine-tuning hyperparameters
+* Increasing the complexity of the models
+* Incorporating advanced techniques such as Double DQN or Dueling DQN
+* Utilizing more sophisticated training algorithms and optimizers
+* Exploring different reward structures and environment settings
 
 ### References
 
