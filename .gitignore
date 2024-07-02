@@ -28,8 +28,5 @@ pip-log.txt
 env/
 venv/
 
-# dat files
-*.dat
-
 # json files
 launch.json
