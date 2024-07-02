@@ -64,7 +64,7 @@ From the frames vs. reward plots, it is evident that the models failed to learn 
 However, out of the tried models and batch sizes, the **batch_size:32** trained with **DQN** showed an improvement in learning. This model demonstrated that the agent learned from the environment, achieving the highest score in evaluation compared to the rest.
 
 ![Frames vs reward plot for DQN model with batch-size:32](training_episodes/best_model_DQN_32.png)
-*Frames vs reward plot for DQN model with batch-size:16*
+*Frames vs reward plot for DQN model with batch-size:32*
 
 ![Pacman game play animation](results/animation_dqn_32.gif)
 *Pacman game play animation*
