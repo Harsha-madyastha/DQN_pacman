@@ -12,6 +12,10 @@ This project implements training and evaluation of Deep Q-Networks (DQN) and Res
 * `train.py`: Main script for training the models.
 * `eval.py`: Script for evaluating the trained models and saving the gameplay as GIFs.
 
+### Custom Environment
+
+The Ms. Pacman environment was created using the [Atari Learning Environment (ALE)](https://github.com/Farama-Foundation/Arcade-Learning-Environment). ALE is a framework that allows researchers and developers to interface with Atari 2600 games for AI research. It provides a flexible environment for implementing and testing various reinforcement learning algorithms on classic games.
+
 ### Installation
 1. Clone the repository:
 ```bash 
