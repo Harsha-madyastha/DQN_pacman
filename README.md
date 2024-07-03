@@ -22,7 +22,7 @@ The Ms. Pacman environment was created using the [Atari Learning Environment (AL
 git clone https://github.com/Harsha-madyastha/DQN_pacman
 ```
 ```bash 
-cd ms-pacman-dqn
+cd DQN_pacman
 ```
 2. Install the required Python packages:
 
