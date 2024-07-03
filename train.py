@@ -40,8 +40,8 @@ def train(model_name):
         net = DQN(input_shape, n_actions).to(device)
         tgt_net = DQN(input_shape, n_actions).to(device)
     elif model_name == "resnet":
-        net = ResNetDQN(input_shape, len(legal_actions)).to(device)
-        tgt_net = ResNetDQN(input_shape, len(legal_actions)).to(device)
+        net = ResNetDQN(input_shape, n_actions).to(device)
+        tgt_net = ResNetDQN(input_shape, n_actions).to(device)
     else:
         raise ValueError("Unknown model name")
 
